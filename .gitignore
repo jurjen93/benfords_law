@@ -3,3 +3,6 @@ benfordslaw_analysis.egg-info/
 build/
 dist/
 .idea/
+*.iws
+*.xml
+*.png
