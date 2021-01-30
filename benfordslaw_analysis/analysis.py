@@ -3,6 +3,7 @@ from math import log10, sqrt, log
 from matplotlib import style
 from scipy.spatial import distance
 from collections import Counter
+from pandas import Series
 
 class BenfordsLaw:
     """
@@ -33,35 +34,42 @@ class BenfordsLaw:
 class Analysis(BenfordsLaw):
     """
     Analysis is a class to analyse the first digits of your data.
+
+    The following types of data can be inserted:
+        ----------
+        data (list): list of your data
+        series (Series): panda series from your data
+        ----------
+
     You can do the following things:
+        * get the following properties in dictionary form:
+        ----------
+        first_digit_frequencies
+        second_digit_frequencies
+        third_digit_frequencies
+        ----------
 
-    get the following properties in dictionary form:
-    ----------
-    first_digit_frequencies
-    second_digit_frequencies
-    third_digit_frequencies
-    ----------
+        * get the following measures:
+        ----------
+        first_euclidean_distance -> return the euclidean distance between your data's first significant data frequencies and benford frequencies
+        second_euclidean_distance -> return the euclidean distance between your data's second significant data frequencies and benford frequencies
+        third_euclidean_distance -> return the euclidean distance between your data's third significant data frequencies and benford frequencies
+        ----------
 
-    get the following measures:
-    ----------
-    first_euclidean_distance -> return the euclidean distance between your data's first significant data frequencies and benford frequencies
-    second_euclidean_distance -> return the euclidean distance between your data's second significant data frequencies and benford frequencies
-    third_euclidean_distance -> return the euclidean distance between your data's third significant data frequencies and benford frequencies
-    ----------
-
-    plot the following:
-    ----------
-    plot_first_digit -> plot the first significant digit frequency versus benford's law with the euclidean distance in the title
-    plot_second_digit ->  plot the second significant digit frequency versus benford's law with the euclidean distance in the title
-    plot_third_digit -> plot the third significant digit frequency versus benford's law with the euclidean distance in the title
-    ----------
+        * plot the following:
+        ----------
+        plot_first_digit -> plot the first significant digit frequency versus benford's law with the euclidean distance in the title
+        plot_second_digit ->  plot the second significant digit frequency versus benford's law with the euclidean distance in the title
+        plot_third_digit -> plot the third significant digit frequency versus benford's law with the euclidean distance in the title
+        ----------
     """
 
-    def __init__(self, data: list=None):
+    def __init__(self, data: list=None, series: Series=None):
         self.data = data
+        self.series = series
 
     @staticmethod
-    def first_n_digits(num, n: int = 1):
+    def first_n_digits(num: float, n: int = 1):
         """
         Get the first n digits from a number.
 
@@ -71,7 +79,7 @@ class Analysis(BenfordsLaw):
         n (int)     : number of first digits
         ----------
         """
-        first_digits = int(abs(num) // 10 ** (int(log(abs(num), 10)) - n + 1))
+        first_digits = int(abs(float(num)) // 10 ** (int(log(abs(float(num)), 10)) - n + 1))
         if n == 1:
             return first_digits
         elif n == 0:
@@ -81,18 +89,36 @@ class Analysis(BenfordsLaw):
 
     @property
     def first_digit_frequencies(self):
-        count = Counter([self.first_n_digits(d, 1) for d in self.data])
-        return {int(i):j/sum(count.values()) for i,j in count.items() if i!=0}
+        if self.series is not None:
+            count = self.series.apply(lambda x: self.first_n_digits(x, 1)).value_counts().to_dict()
+        else:
+            count = Counter([self.first_n_digits(d, 1) for d in self.data])
+        for i in range(1, 10):
+            if i not in count.keys():
+                count.update({i: 0})
+        return dict(sorted({int(i):j/sum(count.values()) for i,j in count.items() if i!=0}.items()))
 
     @property
     def second_digit_frequencies(self):
-        count = Counter([self.first_n_digits(d, 2) for d in self.data])
-        return {int(i):j/sum(count.values()) for i,j in count.items()}
+        if self.series is not None:
+            count = self.series.apply(lambda x: self.first_n_digits(x, 2)).value_counts().to_dict()
+        else:
+            count = Counter([self.first_n_digits(d, 2) for d in self.data])
+        for i in range(10):
+            if i not in count.keys():
+                count.update({i: 0})
+        return dict(sorted({int(i):j/sum(count.values()) for i,j in count.items()}.items()))
 
     @property
     def third_digit_frequencies(self):
-        count = Counter([self.first_n_digits(d, 3) for d in self.data])
-        return {int(i):j/sum(count.values()) for i,j in count.items()}
+        if self.series is not None:
+            count = self.series.apply(lambda x: self.first_n_digits(x, 3)).value_counts().to_dict()
+        else:
+            count = Counter([self.first_n_digits(d, 3) for d in self.data])
+        for i in range(10):
+            if i not in count.keys():
+                count.update({i: 0})
+        return dict(sorted({int(i):j/sum(count.values()) for i,j in count.items()}.items()))
 
     def first_euclidean_distance(self, frequencies):
         return round(distance.euclidean(list(self.first_benford_frequencies.values()), frequencies) / distance.euclidean(
@@ -118,7 +144,11 @@ class Analysis(BenfordsLaw):
         show (bool): if you want to show on screen or not
         ----------
         """
-        error_bar = 1 / sqrt(len(self.data)) #poisson error bars -> could be improved with other error bars
+        if self.series is not None:
+            size = len(self.series)
+        else:
+            size = len(self.data)
+        error_bar = 1 / sqrt(size) #poisson error bars -> could be improved with other error bars
         style.use('ggplot')
         plt.scatter(self.first_benford_frequencies.keys(), self.first_benford_frequencies.values(), marker='s', color='black')
         plt.scatter(self.first_digit_frequencies.keys(), self.first_digit_frequencies.values(), marker='o')
@@ -148,7 +178,11 @@ class Analysis(BenfordsLaw):
         show (bool): if you want to show on screen or not
         ----------
         """
-        error_bar = 1 / sqrt(len(self.data)) #poisson error bars -> could be improved with other error bars
+        if self.series is not None:
+            size = len(self.series)
+        else:
+            size = len(self.data)
+        error_bar = 1 / sqrt(size) #poisson error bars -> could be improved with other error bars
         style.use('ggplot')
         plt.scatter(self.second_benford_frequencies.keys(), self.second_benford_frequencies.values(), marker='s', color='black')
         plt.scatter(self.second_digit_frequencies.keys(), self.second_digit_frequencies.values(), marker='o')
@@ -178,7 +212,11 @@ class Analysis(BenfordsLaw):
         show (bool): if you want to show on screen or not
         ----------
         """
-        error_bar = 1 / sqrt(len(self.data)) #poisson error bars -> could be improved with other error bars
+        if self.series is not None:
+            size = len(self.series)
+        else:
+            size = len(self.data)
+        error_bar = 1 / sqrt(size) #poisson error bars -> could be improved with other error bars
         style.use('ggplot')
         plt.scatter(self.third_benford_frequencies.keys(), self.third_benford_frequencies.values(), marker='s', color='black')
         plt.scatter(self.third_digit_frequencies.keys(), self.third_digit_frequencies.values(), marker='o')
@@ -200,5 +238,7 @@ if  __name__=="__main__":
     #example:
     from random import uniform
     random_data = [uniform(-10, 10) for i in range(0,1000)]
-    bl = Analysis(random_data)
+    bl = Analysis(series=Series(random_data))
+    bl.plot_first_digit('Random stuff')
+    bl = Analysis(data=random_data)
     bl.plot_first_digit('Random stuff')

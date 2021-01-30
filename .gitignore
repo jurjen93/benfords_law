@@ -5,3 +5,4 @@ dist/
 .idea/
 *.iws
 *.xml
+pypi.sh

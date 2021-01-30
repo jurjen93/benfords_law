@@ -12,7 +12,8 @@ By ```pip install benfordslaw-analysis``` you will install the package.
 #### Usage
 Now you can do ```from benfordslaw_analysis.analysis import Analysis```.
 You have now imported the class ```Analysis```.
-Now you can play around with your data and test if Benford's law is hidden in your data.
+Now you can play around with your data and test if Benford's law is hidden in your data, by inserting a list or 
+a pandas series into the class object.
 
 For example, make a plot with Benford's law versus random data with:
 ```
@@ -26,6 +27,15 @@ bl.plot_first_digit('Random stuff')
 
 Note that we use the [Euclidean distance] between the digit frequency from Benford's law and your own data as a measure
 and that we use Poisson error bars (based on the number of data points).
+
+#### Euclidean distance
+
+The normalized Euclidean distance is a nice way to test how Benford your data is.
+This value is situated between 0 and 1, the closer to 0 the better.
+However, it is not a formal statistic because it is sample size independent.
+In the literature there are several other measures (Chi-square, Kolmogorov-Smirnov, ..) that are used but I noticed in my own research that 
+size dependency is a limitation in bigger datasets and classifies all bigger datasets as non-Benford, even though they are Benford by eye.
+More about the justification of using the Euclidean distance is explained in [my own paper] in Appendix D.
 
 #### Citing
 
@@ -45,3 +55,4 @@ If you find ```benfordslaw_analysis``` a useful tool for your own research, plea
 [science]: https://towardsdatascience.com/benfords-law-in-the-gaia-universe-b5727db7a936
 [quality of data]: https://www.idfcinstitute.org/blog/2020/november/using-benfords-law-to-understand-covid-19-data-quality/
 [Euclidean distance]: https://en.wikipedia.org/wiki/Euclidean_distance
+[my own paper]: https://www.aanda.org/articles/aa/pdf/2020/10/aa37256-19.pdf

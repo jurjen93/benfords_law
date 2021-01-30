@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
    name="benfordslaw_analysis",
-   version='0.1.0',
+   version='1.0.2',
    author='Jurjen de Jong',
    author_email='jurjendejong93@gmail.com',
    url='https://github.com/jurjen93/Benfords_law',
@@ -16,6 +16,7 @@ setup(
    install_requires=[
        "matplotlib",
        "scipy",
+      "pandas"
       ],
    packages=find_packages()
    )
