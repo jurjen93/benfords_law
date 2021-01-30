@@ -1,1 +1,0 @@
-Benford's law is a digit law that tells us something about the frequency of first, second, or third digits.
