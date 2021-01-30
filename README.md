@@ -4,7 +4,13 @@ Benford's law is a digit-law, which states that the distribution of seperate dig
 This specific frequency is seen in many numerical datasets, as discovered by Simon Newcomb and Frank Benford.
 You can find on [wikipedia] more information about this mysterious law.
 
-Using Benford's law might be helpful to detect [fraud], do [science], or just the [quality of your data].
+Benford's law might be helpful to detect [fraud], do [science], or just the [quality of your data].
+
+#### Installation
+By ```pip install benford_analysis``` you will install the package.
+
+#### Usage
+First import the main class ```BenfordsLaw``` from ```benfords_law```
 
 
 
