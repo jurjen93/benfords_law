@@ -1,0 +1,7 @@
+README.txt
+setup.py
+Benford_s_law_analysis.egg-info/PKG-INFO
+Benford_s_law_analysis.egg-info/SOURCES.txt
+Benford_s_law_analysis.egg-info/dependency_links.txt
+Benford_s_law_analysis.egg-info/requires.txt
+Benford_s_law_analysis.egg-info/top_level.txt
