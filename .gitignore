@@ -1,4 +1,4 @@
-benfordslaw_analysis.egg-info
-build
-dist
-.idea
+benfordslaw_analysis.egg-info/
+build/
+dist/
+.idea/
