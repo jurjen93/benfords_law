@@ -10,7 +10,7 @@ setup(
    url='https://github.com/jurjen93/Benfords_law',
    license='LICENSE.txt',
    description="Use this package to analyse your data with Benford's law",
-   long_description=open('README.txt').read(),
+   long_description=open('README.md').read(),
    install_requires=[
        "matplotlib",
        "scipy",
