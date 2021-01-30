@@ -22,7 +22,7 @@ random_data = [uniform(-10, 10) for i in range(0,1000)]
 bl = Analysis(random_data)
 bl.plot_first_digit('Random stuff')
 ```
-![Test Image 1](test.png)
+![Test Image 1](test/test.png)
 
 Note that we use the [Euclidean distance] between the digit frequency from Benford's law and your own data as a measure
 and that we use Poisson error bars (based on the number of data points).
