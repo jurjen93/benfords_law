@@ -1,0 +1,9 @@
+README.md
+setup.py
+benfordslaw_analysis/__init__.py
+benfordslaw_analysis/analysis.py
+benfordslaw_analysis.egg-info/PKG-INFO
+benfordslaw_analysis.egg-info/SOURCES.txt
+benfordslaw_analysis.egg-info/dependency_links.txt
+benfordslaw_analysis.egg-info/requires.txt
+benfordslaw_analysis.egg-info/top_level.txt
