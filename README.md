@@ -7,7 +7,7 @@ You can find on [wikipedia] more information about this mysterious law.
 Benford's law might be helpful to detect [fraud], do [science], or just investigate the [quality of data].
 
 #### Installation
-By ```pip install benfordslaw-analysis``` you will install the package.
+With ```pip install benfordslaw-analysis``` you will install the package.
 
 #### Usage
 Now you can do ```from benfordslaw_analysis.analysis import Analysis```.
