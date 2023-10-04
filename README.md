@@ -35,7 +35,7 @@ This value is situated between 0 and 1, the closer to 0 the better.
 However, it is not a formal statistic because it is sample size independent.
 In the literature there are several other measures (Chi-square, Kolmogorov-Smirnov, ..) that are used but I noticed in my own research that 
 size dependency is a limitation in bigger datasets and classifies all bigger datasets as non-Benford, even though they are Benford by eye.
-More about the justification of using the Euclidean distance is explained in [my own paper] in Appendix D.
+More about the justification of using the Euclidean distance is explained in [this paper] in Appendix D.
 
 #### Citing
 
