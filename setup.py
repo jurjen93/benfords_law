@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
    name="benfordslaw_analysis",
-   version='1.0.2',
+   version='1.1.0',
    author='Jurjen de Jong',
    author_email='jurjendejong93@gmail.com',
    url='https://github.com/jurjen93/Benfords_law',
