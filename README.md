@@ -1,19 +1,21 @@
 # Benford's law analysis
 
-Benford's law is a digit-law, which states that the distribution of seperate digits in numbers follow a specific frequency.
-This specific frequency is seen in many numerical datasets, as discovered by Simon Newcomb and Frank Benford.
+Benford's law is a digit-law, which states that digits from numbers follow a specific frequency.
+This specific frequency has been observed in many numerical datasets, 
+as discovered by Simon Newcomb and Frank Benford.
 You can find on [wikipedia] more information about this mysterious law.
 
-Benford's law might be helpful to detect [fraud], do [science], or just investigate the [quality of data].
+Benford's law is a helpful tool to detect fraud, do science, or just investigate the quality of data. 
+You can also read my [blog] on Towards Data Science with a summary of Benford's law and [this paper], 
+where I used Benford's law to study digit patterns of the distances between stars in our Milky Way.
 
 #### Installation
-With ```pip install benfordslaw-analysis``` you will install the package.
+With ```pip install benfordslaw-analysis``` you can install the package.
 
 #### Usage
-Now you can do ```from benfordslaw_analysis.analysis import Analysis```.
-You have now imported the class ```Analysis```.
-Now you can play around with your data and test if Benford's law is hidden in your data, by inserting a list or 
-a pandas series into the class object.
+After installing, you can run in Python ```from benfordslaw_analysis.analysis import Analysis```.
+This imports the class ```Analysis```.
+With this class you can verify if Benford's law is hidden in your own data.
 
 For example, make a plot with Benford's law versus random data with:
 ```
@@ -30,10 +32,10 @@ and that we use Poisson error bars (based on the number of data points).
 
 #### Euclidean distance
 
-The normalized Euclidean distance is a nice way to test how Benford your data is.
+The normalized Euclidean distance is a quick way to test whether your data follows Benford law.
 This value is situated between 0 and 1, the closer to 0 the better.
 However, it is not a formal statistic because it is sample size independent.
-In the literature there are several other measures (Chi-square, Kolmogorov-Smirnov, ..) that are used but I noticed in my own research that 
+In the literature there are several other measures (Chi-square, Kolmogorov-Smirnov, ..) that are used. However, I noticed in my own research that 
 size dependency is a limitation in bigger datasets and classifies all bigger datasets as non-Benford, even though they are Benford by eye.
 
 #### Citing
@@ -50,8 +52,6 @@ If you find ```benfordslaw_analysis``` a useful tool for your own research, plea
 ```
 
 [wikipedia]: https://en.wikipedia.org/wiki/Benford%27s_law
-[fraud]: https://www.journalofaccountancy.com/issues/2017/apr/excel-and-benfords-law-to-detect-fraud.html
-[science]: https://towardsdatascience.com/benfords-law-in-the-gaia-universe-b5727db7a936
-[quality of data]: https://www.idfcinstitute.org/blog/2020/november/using-benfords-law-to-understand-covid-19-data-quality/
+[blog]: https://towardsdatascience.com/benfords-law-in-the-gaia-universe-b5727db7a936
 [Euclidean distance]: https://en.wikipedia.org/wiki/Euclidean_distance
-[my own paper]: https://www.aanda.org/articles/aa/pdf/2020/10/aa37256-19.pdf
+[this paper]: https://www.aanda.org/articles/aa/pdf/2020/10/aa37256-19.pdf
