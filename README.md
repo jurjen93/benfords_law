@@ -3,9 +3,9 @@
 Benford's law is a digit-law, which states that digits from numbers follow a specific frequency.
 This specific frequency has been observed in many numerical datasets, 
 as discovered by Simon Newcomb and Frank Benford.
-You can find on [wikipedia] more information about this mysterious law.
+You can find on [wikipedia] more information about this "mysterious" law.
 
-Benford's law is a helpful tool to detect fraud, do science, or just investigate the quality of data. 
+Benford's law is a helpful tool to detect fraud, do science, or just to investigate the quality of data. 
 You can also read my [blog] on Towards Data Science with a summary of Benford's law and [this paper], 
 where I used Benford's law to study digit patterns of the distances between stars in our Milky Way.
 
@@ -35,21 +35,8 @@ and that we use Poisson error bars (based on the number of data points).
 The normalized Euclidean distance is a quick way to test whether your data follows Benford law.
 This value is situated between 0 and 1, the closer to 0 the better.
 However, it is not a formal statistic because it is sample size independent.
-In the literature there are several other measures (Chi-square, Kolmogorov-Smirnov, ..) that are used. However, I noticed in my own research that 
+In the literature there are several other measures (Chi-square, Kolmogorov-Smirnov, ..) that are used. However, I noticed that 
 size dependency is a limitation in bigger datasets and classifies all bigger datasets as non-Benford, even though they are Benford by eye.
-
-#### Citing
-
-If you find ```benfordslaw_analysis``` a useful tool for your own research, please cite in the following way:
-
-```
-@misc{benford_py,
-      author = {Jurjen, de Jong},
-      title = {{benfordslaw_analysis: a Python Implementation of Benford's Law analysis}},
-      year = {2021},
-      howpublished = {\url{https://github.com/jurjen93/Benfords_law}},
-}
-```
 
 [wikipedia]: https://en.wikipedia.org/wiki/Benford%27s_law
 [blog]: https://towardsdatascience.com/benfords-law-in-the-gaia-universe-b5727db7a936
